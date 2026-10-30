@@ -1,0 +1,20 @@
+@'
+# Python
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+
+# Frontend dependencies and build
+frontend/node_modules/
+frontend/dist/
+
+# Uploaded images and generated detections
+uploads/
+backend/static/detections/
+
+# Local databases
+*.db
+*.sqlite3
+'@ | Set-Content -Encoding utf8 .gitignore

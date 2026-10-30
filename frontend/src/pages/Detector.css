@@ -1,0 +1,680 @@
+/* =========================================
+   MediAI — Medical Image Detector
+   White, Mint & Teal Theme
+   ========================================= */
+
+.medi-app {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 90% 8%, #eaf7f3 0%, transparent 32%),
+    #a5d4be;
+  color: #30707b;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.medi-app *,
+.medi-app *::before,
+.medi-app *::after {
+  box-sizing: border-box;
+}
+
+.medi-app a {
+  text-decoration: none;
+}
+
+.medi-app-nav {
+  min-height: 78px;
+  width: 100%;
+  padding: 14px max(4%, calc((100% - 1240px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid #e3eeeb;
+}
+
+.medi-app-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #18363b;
+  flex-shrink: 0;
+}
+
+.medi-app-logo {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #08544c;
+  color: #fff;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.medi-app-brand strong,
+.medi-app-brand small {
+  display: block;
+}
+
+.medi-app-brand strong {
+  font-size: 22px;
+  letter-spacing: -0.7px;
+}
+
+.medi-app-brand small {
+  margin-top: 4px;
+  color: #78908c;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.medi-app-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.medi-app-links a {
+  color: #63777b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.medi-app-links a:hover,
+.medi-app-links a.active {
+  color: #087f73;
+}
+
+.medi-app-logout {
+  padding: 10px 16px;
+  border: 1px solid #d7e8e4;
+  border-radius: 9px;
+  background: #fff;
+  color: #087f73;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.medi-app-logout:hover {
+  background: #eaf7f3;
+}
+
+.medi-detector-page {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 54px 0 0;
+}
+
+.medi-detector-heading {
+  max-width: 720px;
+  margin: 0 auto 38px;
+  text-align: center;
+}
+
+.medi-detector-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-bottom: 18px;
+  color: #087f73;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.medi-detector-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34ad91;
+  box-shadow: 0 0 0 4px #e2f5ee;
+}
+
+.medi-detector-heading h1 {
+  margin: 0;
+  color: #18363b;
+  font-size: clamp(34px, 4.5vw, 52px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1.8px;
+}
+
+.medi-detector-heading h1 span {
+  color: #087f73;
+}
+
+.medi-detector-heading > p {
+  max-width: 600px;
+  margin: 16px auto 0;
+  color: #718388;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.medi-detector-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+  align-items: start;
+  gap: 24px;
+}
+
+.medi-upload-card,
+.medi-guidance-card {
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid #e3eeeb;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow:  0 8px 28px rgba(26, 75, 75, 0.05);
+}
+
+.medi-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.medi-step-label {
+  display: block;
+  color: #087f73;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.medi-card-heading h2,
+.medi-guidance-card h2 {
+  margin: 8px 0 0;
+  color: #18363b;
+  font-size: 22px;
+  letter-spacing: -0.6px;
+}
+
+.medi-upload-symbol {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #eaf7f3;
+  color: #087f73;
+  font-size: 25px;
+}
+
+.medi-upload-area {
+  min-height: 220px;
+  padding: 26px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  border: 1.5px dashed #b5d8cd;
+border-radius: 15px;
+background: #f8fcfa;
+  color: #087f73;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.medi-upload-area:hover,
+.medi-upload-area:focus-within {
+  border-color: #087f73;
+  background: #edf8f4;
+}
+
+.medi-upload-area.has-preview {
+  min-height: 70px;
+  margin-bottom: 16px;
+  padding: 15px;
+  border-style: solid;
+}
+
+.medi-upload-icon {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: #e4f5ef;
+}
+
+.medi-upload-area > strong {
+  color: #294844;
+  font-size: 15px;
+}
+
+.medi-upload-description {
+  color: #718681;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.medi-upload-formats {
+  padding: 7px 11px;
+  border-radius: 6px;
+  background: #eaf7f3;
+  color: #087f73;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.medi-upload-replace {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.medi-preview-card {
+  overflow: hidden;
+  margin: 0 0 19px;
+  border: 1px solid #e3eeeb;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.medi-preview-image-wrap {
+  width: 100%;
+  height: 290px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #102326;
+}
+
+.medi-preview-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.medi-preview-details {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px;
+}
+
+.medi-preview-file-icon {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 9px;
+  background: #eaf7f3;
+  color: #087f73;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.medi-preview-file-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.medi-preview-file-text strong,
+.medi-preview-file-text span {
+  display: block;
+}
+
+.medi-preview-file-text strong {
+  overflow-wrap: anywhere;
+  color: #294844;
+  font-size: 13px;
+}
+
+.medi-preview-file-text span {
+  margin-top: 5px;
+  color: #89999c;
+  font-size: 12px;
+}
+
+.medi-remove-file {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: 1px solid #f0dddd;
+  border-radius: 8px;
+  background: #fff7f7;
+  color: #b64242;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.medi-remove-file:hover {
+  background: #ffeaea;
+}
+
+.medi-remove-file:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.medi-analyze-button {
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 20px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #087f73;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 7px 20px rgba(8, 127, 115, 0.13);
+}
+
+.medi-analyze-button:hover:not(:disabled) {
+  background: #066568;
+  transform: translateY(-1px);
+}
+
+.medi-analyze-button:disabled {
+  opacity: 0.55;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.medi-analyze-button > span:last-child {
+  font-size: 19px;
+}
+
+.medi-spinner {
+  width: 17px;
+  height: 17px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: medi-spin 0.7s linear infinite;
+}
+
+@keyframes medi-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.medi-detector-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 15px;
+  padding: 12px;
+  border: 1px solid #f1caca;
+  border-radius: 9px;
+  background: #fff5f5;
+  color: #a42d36;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.medi-detector-error > span {
+  width: 19px;
+  height: 19px;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 50%;
+  background: #f8dddd;
+  font-weight: 800;
+}
+
+.medi-upload-security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 17px;
+  color: #82938f;
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.medi-upload-security > span {
+  color: #159b85;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.medi-guidance-card {
+  padding: 27px;
+  background: linear-gradient(155deg, #fff 35%, #f2faf6);
+}
+
+.medi-guidance-icon {
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 24px;
+  border: 1px solid #dcefe9;
+  border-radius: 13px;
+  background: #eaf7f3;
+  color: #087f73;
+  font-size: 25px;
+}
+
+.medi-guidance-card > p {
+  margin: 13px 0 25px;
+  color: #718388;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.medi-workflow {
+  display: flex;
+  flex-direction: column;
+}
+
+.medi-workflow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 17px 0;
+  border-top: 1px solid #e5efeb;
+}
+
+.medi-workflow-step > span {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 10px;
+  background: #eaf7f3;
+  color: #087f73;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.medi-workflow-step strong {
+  display: block;
+  margin: 2px 0 6px;
+  color: #304a4f;
+  font-size: 13px;
+}
+
+.medi-workflow-step p {
+  margin: 0;
+  color: #82938f;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.medi-guidance-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid #dcece5;
+  border-radius: 10px;
+  background: #f0faf6;
+}
+
+.medi-guidance-note > span {
+  width: 19px;
+  height: 19px;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 50%;
+  background: #dcefe7;
+  color: #087f73;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.medi-guidance-note p {
+  margin: 0;
+  color: #718681;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.medi-guidance-note strong {
+  color: #294844;
+}
+
+.medi-app-footer {
+  min-height: 76px;
+  margin-top: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-top: 1px solid #e3eeeb;
+  color: #829295;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* Responsive layout */
+
+@media (max-width: 850px) {
+  .medi-app-nav {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .medi-app-links {
+    gap: 18px;
+  }
+
+  .medi-detector-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .medi-guidance-card {
+    display: block;
+  }
+
+  .medi-detector-page {
+    padding-top: 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  .medi-app-nav {
+    padding: 14px 18px;
+  }
+
+  .medi-app-brand strong {
+    font-size: 20px;
+  }
+
+  .medi-app-brand small {
+    font-size: 7px;
+  }
+
+  .medi-app-links {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .medi-app-links a {
+    font-size: 13px;
+  }
+
+  .medi-app-logout {
+    padding: 9px 11px;
+    font-size: 12px;
+  }
+
+  .medi-detector-page {
+    width: calc(100% - 30px);
+    padding-top: 32px;
+  }
+
+  .medi-detector-heading {
+    margin-bottom: 27px;
+  }
+
+  .medi-detector-heading h1 {
+    font-size: 36px;
+    letter-spacing: -1.2px;
+  }
+
+  .medi-detector-heading > p {
+    font-size: 15px;
+  }
+
+  .medi-upload-card,
+  .medi-guidance-card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .medi-card-heading h2,
+  .medi-guidance-card h2 {
+    font-size: 20px;
+  }
+
+  .medi-upload-area {
+    min-height: 205px;
+    padding: 22px 12px;
+  }
+
+  .medi-preview-image-wrap {
+    height: 235px;
+  }
+
+  .medi-app-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 17px 0;
+    margin-top: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .medi-app *,
+  .medi-app *::before,
+  .medi-app *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

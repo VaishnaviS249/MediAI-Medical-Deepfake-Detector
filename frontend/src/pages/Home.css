@@ -1,0 +1,592 @@
+
+/* =========================================
+   MediAI Homepage
+   ========================================= */
+
+
+.medi-home {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  color: #173c43;
+  font-family: "Inter", sans-serif;
+  background: #edf7f8;
+}
+
+
+/* Navigation */
+.medi-nav {
+  min-height: 65px;
+  padding: 12px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background: rgba(220, 244, 237, 0.92);
+  border-bottom: 1px solid #d3e9e2;
+  position: relative;
+  z-index: 5;
+}
+
+.medi-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #123b43;
+  text-decoration: none;
+}
+
+.medi-brand-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #087f82;
+  color: #ffffff;
+  font-size: 1.8rem;
+}
+
+.medi-brand strong {
+  display: block;
+  font-size: 1.35rem;
+}
+
+.medi-brand strong span {
+  color: #087f82;
+}
+
+.medi-brand small {
+  display: block;
+  margin-top: 3px;
+  color: #60777b;
+  font-size: 0.62rem;
+  letter-spacing: 1px;
+}
+
+.medi-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.medi-nav a {
+  color: #244b4d;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.medi-nav-links a:hover,
+.medi-nav-links .medi-nav-active {
+  color: #087f82;
+  font-weight: 700;
+}
+
+.medi-login {
+  padding: 10px 18px;
+  border: 1px solid #087f82;
+  border-radius: 8px;
+  color: #087f82 !important;
+  font-weight: 700;
+}
+
+.medi-login:hover {
+  background: #d9f3e9;
+}
+
+/* Hero section and medical scan background */
+.medi-hero {
+  min-height: 570px;
+  padding: 70px 9%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  background-color: #edf7f8;
+  background-image:
+    linear-gradient(
+      90deg,
+      #edf7f8 0%,
+      rgba(237, 247, 248, 0.98) 28%,
+      rgba(237, 247, 248, 0.88) 43%,
+      rgba(237, 247, 248, 0.35) 62%,
+      rgba(237, 247, 248, 0.05) 100%
+    ),
+    url("/medical-scan.png");
+  background-repeat: no-repeat;
+  background-position: center, right center;
+  background-size: cover, auto 100%;
+}
+
+.medi-hero-content {
+  width: 58%;
+  max-width: 680px;
+  position: relative;
+  z-index: 1;
+}
+
+.medi-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+  color: #087f82;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.medi-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #14b8a6;
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.12);
+}
+
+.medi-hero-content h1 {
+  color: #123047;
+  font-size: clamp(2.7rem, 5vw, 4.7rem);
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin: 20px 0;
+  font-weight: 800;
+}
+
+.medi-hero-content h1 span {
+  color: #087f82;
+}
+
+.medi-hero-content p {
+  max-width: 570px;
+  color: #526a7b;
+  font-size: 1.08rem;
+  line-height: 1.85;
+  margin: 0 0 30px;
+}
+
+.medi-hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.medi-hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.medi-primary-button {
+  background: #087f82;
+  color: #ffffff;
+  border: 1px solid #087f82;
+}
+
+.medi-primary-button:hover {
+  background: #066568;
+  transform: translateY(-2px);
+}
+
+.medi-secondary-button {
+  background: rgba(255, 255, 255, 0.75);
+  color: #087f82;
+  border: 1px solid #b9ddd3;
+}
+
+.medi-secondary-button:hover {
+  background: #d9f3e9;
+  transform: translateY(-2px);
+}
+
+.medi-trust-note {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 25px;
+  color: #60777b;
+  font-size: 0.85rem;
+}
+
+.medi-trust-check {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #d9f3e9;
+  color: #087f82;
+  font-weight: 800;
+}
+
+.medi-trust-separator {
+  color: #087f82;
+}
+
+/* The scan is used as a hero background, not a separate card */
+.medi-hero-visual {
+  display: none;
+}
+
+.medi-scan-card,
+.medi-scan-top,
+.medi-scan-image-wrap,
+.medi-scan-image-shade,
+.medi-scan-footer {
+  display: none;
+}
+
+/* About and results sections */
+.medi-about,
+.medi-results-info {
+  padding: 80px 9%;
+  background: #f4fbf8;
+  color: #173c43;
+}
+
+.medi-how {
+  padding: 80px 9%;
+  background: #e5f5ef;
+  color: #173c43;
+}
+
+.medi-section-heading {
+  max-width: 760px;
+  margin: 0 auto 42px;
+  text-align: center;
+}
+
+.medi-section-heading h2 {
+  margin: 0 0 16px;
+  color: #123b43;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  letter-spacing: -1px;
+}
+
+.medi-section-heading p {
+  margin: 0 auto;
+  color: #60777b;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.medi-feature-grid,
+.medi-result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.medi-feature-card,
+.medi-result-card {
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #d8ebe4;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(25, 83, 72, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.medi-feature-card:hover,
+.medi-result-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(25, 83, 72, 0.1);
+}
+
+.medi-feature-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 22px;
+  border-radius: 12px;
+  background: #d9f3e9;
+  color: #087f82;
+  font-weight: 800;
+}
+
+.medi-feature-card h3,
+.medi-step h3,
+.medi-result-card h3 {
+  margin: 0 0 12px;
+  color: #12615e;
+  font-size: 1.15rem;
+}
+
+.medi-feature-card p,
+.medi-step p,
+.medi-result-card p {
+  margin: 0;
+  color: #60777b;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* How it works */
+.medi-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  max-width: 1150px;
+  margin: 0 auto 50px;
+}
+
+.medi-step {
+  padding: 8px 4px;
+}
+
+.medi-step-number {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #087f82;
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+/* Call to action */
+.medi-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 1px solid #c6e6da;
+  border-radius: 16px;
+  background: #f7fffb;
+}
+
+.medi-cta h3 {
+  margin: 0 0 8px;
+  color: #123b43;
+  font-size: 1.35rem;
+}
+
+.medi-cta p {
+  margin: 0;
+  color: #60777b;
+  line-height: 1.7;
+}
+
+.medi-cta-button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 20px;
+  border-radius: 9px;
+  background: #087f82;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+
+.medi-cta-button:hover {
+  background: #066568;
+}
+
+.medi-disclaimer {
+  max-width: 1150px;
+  margin: 32px auto 0;
+  padding: 18px 22px;
+  border-left: 4px solid #70bca8;
+  border-radius: 6px;
+  background: #e8f5ef;
+  color: #526c69;
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+.medi-disclaimer strong {
+  color: #175a55;
+}
+
+/* Upload, analyze and review strip */
+.medi-info-strip {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  padding: 28px 7%;
+  background: #dcefe9;
+  border-top: 1px solid #c8e3da;
+  border-bottom: 1px solid #c8e3da;
+}
+
+.medi-info-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 24px;
+  border-right: 1px solid #c5ded6;
+}
+
+.medi-info-item:last-child {
+  border-right: none;
+}
+
+.medi-info-number {
+  color: #087f82;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.medi-step-icon {
+  color: #087f82;
+  font-size: 1.5rem;
+}
+
+.medi-info-item strong {
+  color: #174c4b;
+}
+
+.medi-info-item p {
+  margin: 6px 0 0;
+  color: #60777b;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+
+/* Footer */
+.medi-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 22px 7%;
+  width: 100%;
+  box-sizing: border-box;
+  color: #526c69;
+  background: #acd6c5;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Responsive layout */
+@media (max-width: 850px) {
+  .medi-hero {
+    padding: 60px 7%;
+    background-position: center, right center;
+    background-size: cover, auto 85%;
+  }
+
+  .medi-hero-content {
+    width: 70%;
+  }
+
+  .medi-feature-grid,
+  .medi-result-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .medi-steps {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .medi-nav {
+    padding: 14px 5%;
+    flex-wrap: wrap;
+  }
+
+  .medi-nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 22px;
+  }
+
+  .medi-hero {
+    min-height: 540px;
+    padding: 48px 6%;
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(237, 247, 248, 0.97),
+        rgba(237, 247, 248, 0.83)
+      ),
+      url("/medical-scan.png");
+    background-position: center, right center;
+    background-size: cover, auto 70%;
+  }
+
+  .medi-hero-content {
+    width: 100%;
+  }
+
+  .medi-hero-content h1 {
+    font-size: clamp(2.4rem, 10vw, 3.5rem);
+    letter-spacing: -1px;
+  }
+
+  .medi-hero-content p {
+    font-size: 1rem;
+  }
+
+  .medi-hero-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .medi-hero-actions a {
+    width: fit-content;
+  }
+
+  .medi-about,
+  .medi-how,
+  .medi-results-info {
+    padding: 55px 6%;
+  }
+
+  .medi-feature-grid,
+  .medi-result-grid,
+  .medi-steps {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .medi-cta {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .medi-info-strip {
+    flex-direction: column;
+    padding: 18px 7%;
+  }
+
+  .medi-info-item {
+    border-right: none;
+    border-bottom: 1px solid #c5ded6;
+    padding: 18px 4px;
+  }
+
+  .medi-info-item:last-child {
+    border-bottom: none;
+  }
+
+  .medi-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}

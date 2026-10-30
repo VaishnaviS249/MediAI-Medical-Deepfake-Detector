@@ -1,0 +1,31 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+
+# Frontend dependencies
+frontend/node_modules/
+frontend/dist/
+
+# Uploaded files and generated detections
+uploads/
+backend/static/detections/
+
+# Local databases
+*.db
+*.sqlite3
+backend/data/*.json
+# Python cache
+.venv/
+*.pyc
+.pytest_cache/
+
+# Environment and secrets
+!.env.example
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
