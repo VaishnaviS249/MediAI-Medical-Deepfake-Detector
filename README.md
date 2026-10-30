@@ -1,5 +1,8 @@
 # MediAI: Medical Deepfake Detector & Anomaly Localization
 
+🌐 **Live Application**: https://dynamic-kringle-45a89d.netlify.app/  
+⚙️ **Backend API**: https://mediai-backend-1kuv.onrender.com
+
 A full-stack, multimodal clinical AI system designed to detect and localize synthetic manipulations (deepfakes) in medical radiological imaging (Chest CT/X-ray and Brain MRI scans).
 
 ---
