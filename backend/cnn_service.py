@@ -96,19 +96,21 @@ def gradcam(
     pil = Image.open(image_path).convert("RGB")
     inp = transform(pil).unsqueeze(0).to(DEVICE)
 
-    with torch.enable_grad():
-        model.zero_grad()
-        feat = model.features(inp)            # last conv feature map (1,1024,7,7)
-        feat.retain_grad()
-        act = F.relu(feat)
-        pooled = F.adaptive_avg_pool2d(act, (1, 1)).flatten(1)
-        logits = model.classifier(pooled)
+    # High-efficiency, low-memory Grad-CAM (detaches upstream conv graph to avoid 121-layer activation RAM explosion)
+    with torch.no_grad():
+        feat = model.features(inp)
 
-        idx = int(logits.argmax(1)) if target_idx is None else target_idx
-        logits[0, idx].backward()
+    feat = feat.detach().requires_grad_(True)
+    act = F.relu(feat)
+    pooled = F.adaptive_avg_pool2d(act, (1, 1)).flatten(1)
+    logits = model.classifier(pooled)
+
+    idx = int(logits.argmax(1)) if target_idx is None else target_idx
+    logits[0, idx].backward()
 
     weights = feat.grad.mean(dim=(2, 3), keepdim=True)
     cam = F.relu((weights * act.detach()).sum(dim=1))[0].cpu().numpy()
+    del feat, act, pooled, logits, weights
     
     img = cv2.imread(image_path)
     if img is None:

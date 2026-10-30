@@ -7,6 +7,15 @@ from auth import router as auth_router
 import shutil
 import os
 import uuid
+import gc
+import torch
+
+# Optimize PyTorch memory footprint for low-RAM server environments (e.g. Render 512MB free tier)
+torch.set_num_threads(1)
+try:
+    torch.set_num_interop_threads(1)
+except Exception:
+    pass
 
 from yolo_service import MedicalYOLOService
 from cnn_service import predict_cnn, gradcam
@@ -131,6 +140,9 @@ async def analyze_image(file: UploadFile = File(...)):
     except Exception as e:
         print(f"[Grad-CAM] Notice: {e}")
         cnn_result["heatmap_url"] = None
+
+    # Immediately reclaim temporary tensors and inference memory
+    gc.collect()
 
     # Return results to the frontend
     return JSONResponse(content={

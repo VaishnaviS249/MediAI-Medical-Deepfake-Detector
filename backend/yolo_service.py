@@ -122,11 +122,13 @@ class MedicalYOLOService:
 
         img_h, img_w = img.shape[:2]
 
-        # Primary detection pass with optimal medical threshold
+        # Primary detection pass with optimal medical threshold and low-RAM footprint
         results = self.model.predict(
             source=img,
             conf=conf_threshold,
             iou=0.45,
+            imgsz=256,
+            device="cpu",
             max_det=20,
             verbose=False,
         )[0]
@@ -139,6 +141,8 @@ class MedicalYOLOService:
                 source=img,
                 conf=0.24,
                 iou=0.45,
+                imgsz=256,
+                device="cpu",
                 max_det=20,
                 verbose=False,
             )[0]
