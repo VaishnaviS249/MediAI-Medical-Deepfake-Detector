@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { API_BASE_URL } from "../config";
 export default function Auth({ mode }) {
   const isRegister = mode === "register";
   const navigate = useNavigate();
@@ -19,8 +20,8 @@ export default function Auth({ mode }) {
 
     try {
       const endpoint = isRegister
-        ? "http://127.0.0.1:8001/auth/register"
-        : "http://127.0.0.1:8001/auth/login";
+        ? `${API_BASE_URL}/auth/register`
+        : `${API_BASE_URL}/auth/login`;
 
       const body = isRegister
         ? { name, email, password }

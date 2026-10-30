@@ -2,6 +2,7 @@
 import { Link, useLocation } from "react-router-dom";
 import "./Results.css";
 import "../App.css";
+import { API_BASE_URL } from "../config";
 
 export default function Results() {
   const location = useLocation();
@@ -49,14 +50,14 @@ export default function Results() {
   }
 
   const annotatedImageUrl = result.annotated_image_url
-    ? `http://127.0.0.1:8001${result.annotated_image_url}`
+    ? `${API_BASE_URL}${result.annotated_image_url}`
     : null;
 
   const regions = Array.isArray(result.suspicious_regions)
     ? result.suspicious_regions
     : [];
     const heatmapUrl = cnnResult?.heatmap_url
-    ? `http://127.0.0.1:8001${cnnResult.heatmap_url}`
+    ? `${API_BASE_URL}${cnnResult.heatmap_url}`
     : null;
 
   return (

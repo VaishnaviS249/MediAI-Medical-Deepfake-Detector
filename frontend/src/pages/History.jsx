@@ -3,8 +3,9 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import "./History.css";
+import { API_BASE_URL } from "../config";
 
-const API_URL = "http://127.0.0.1:8001";
+const API_URL = API_BASE_URL;
 
 function getSummary(result) {
   if (!result) return "No result available";

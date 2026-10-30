@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import "./Detector.css";
+import { API_BASE_URL } from "../config";
 
 export default function Detector() {
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ export default function Detector() {
       formData.append("file", file);
 
       const response = await fetch(
-        "http://127.0.0.1:8001/analyze",
+        `${API_BASE_URL}/analyze`,
         {
           method: "POST",
           headers: {
