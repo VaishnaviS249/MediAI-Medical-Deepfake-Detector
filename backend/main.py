@@ -141,6 +141,21 @@ async def analyze_image(file: UploadFile = File(...)):
         print(f"[Grad-CAM] Notice: {e}")
         cnn_result["heatmap_url"] = None
 
+    # Save scan record to MongoDB (creates medi_ai database and scans collection automatically)
+    try:
+        from database import scans_collection
+        from datetime import datetime, timezone
+        scans_collection.insert_one({
+            "filename": file.filename,
+            "result": yolo_result,
+            "cnn_result": cnn_result,
+            "final_verdict": final_verdict,
+            "verdict_source": verdict_source,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        })
+    except Exception as e:
+        print(f"[Database] Notice: {e}")
+
     # Immediately reclaim temporary tensors and inference memory
     gc.collect()
 
@@ -152,3 +167,23 @@ async def analyze_image(file: UploadFile = File(...)):
         "final_verdict": final_verdict,
         "verdict_source": verdict_source
     })
+
+
+# =========================
+# Scan History endpoint
+# =========================
+
+@app.get("/history")
+def get_history():
+    from database import scans_collection
+    scans = []
+    try:
+        docs = list(scans_collection.find({}))
+        for doc in reversed(docs):
+            doc["scan_id"] = str(doc.get("_id", uuid.uuid4().hex))
+            if "_id" in doc:
+                del doc["_id"]
+            scans.append(doc)
+    except Exception as e:
+        print(f"[History] Notice: {e}")
+    return {"scans": scans}

@@ -24,9 +24,12 @@ class FallbackCollection:
     """
     def __init__(self, filepath):
         self.filepath = Path(filepath)
-        if not self.filepath.exists():
-            with open(self.filepath, "w") as f:
-                json.dump([], f)
+        try:
+            if not self.filepath.exists():
+                with open(self.filepath, "w") as f:
+                    json.dump([], f)
+        except Exception:
+            pass
 
     def _read(self):
         try:
@@ -68,6 +71,21 @@ class FallbackCollection:
                         pass
                 return res
         return None
+
+    def find(self, query=None):
+        data = self._read()
+        if not query:
+            return [dict(d) for d in data]
+        results = []
+        for doc in data:
+            match = True
+            for k, v in query.items():
+                if doc.get(k) != v:
+                    match = False
+                    break
+            if match:
+                results.append(dict(doc))
+        return results
 
     def insert_one(self, doc):
         data = self._read()
@@ -125,12 +143,14 @@ class FallbackCollection:
         return UpdateResult(1 if matched else 0)
 
 
-# Attempt connection to MongoDB with short timeout
+# Attempt connection to MongoDB (supports both local and cloud Atlas)
 client = None
 mongo_available = False
 
 try:
-    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=500)
+    # 5-second timeout ensures cloud Atlas TLS/SSL handshakes succeed
+    timeout_ms = 5000 if "mongodb+srv://" in MONGO_URI else 800
+    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=timeout_ms)
     client.admin.command("ping")
     mongo_available = True
     print("[Database] Connected to MongoDB successfully.")
@@ -141,8 +161,8 @@ try:
         users_collection.create_index("email", unique=True)
     except Exception:
         pass
-except Exception:
-    print("[Database] MongoDB not running locally. Seamlessly activated persistent local data store.")
+except Exception as e:
+    print(f"[Database] MongoDB connection bypassed ({e}). Seamlessly activated persistent local data store.")
     users_collection = FallbackCollection(DATA_DIR / "users.json")
     scans_collection = FallbackCollection(DATA_DIR / "scans.json")
 
